@@ -20,9 +20,36 @@ class Ball():
         pygame.draw.circle(surf, self.color, (x, y), self.size*0.8)
         return surf
     
-    def draw(self, surface, circle_surface):
+    def draw(self, surface):
         self.surface = surface
         surface.blit(self.surface, self.pos)
+
+class Racket():
+
+    def __init__(self, pos, size, color):
+        self.pos = pos
+        self.size = size
+        self.color = random.choice(color)
+
+        self.surface = self.update_surface()
+
+    def update_surface(self):
+        x = self.pos[0]
+        y = self.pos[1]
+        x += 1
+        y += 1 
+        if x > 0:
+            x = 0
+            y = 0
+
+        surf = pygame.Surface((self.size*20, self.size*5))
+        surf.fill(self.color)
+        return surf
+    
+    def draw(self, surface):
+        self.surface = surface
+        surface.blit(self.surface, self.pos)
+
 
 def main():
     pygame.init()
@@ -33,6 +60,7 @@ def main():
     screen = pygame.display.set_mode(resolution)
 
     ball = Ball(resolution)
+    racket = Racket(resolution)
 
     running = True
     while running:
@@ -46,6 +74,7 @@ def main():
                 #if event.key == pygame.K_1:
                     #new_color = palette1
                     #Particle((0,0), 15, 1000, palette1, 7.5)
+                    #Racket()
 
 
         keys = pygame.key.get_pressed()
@@ -54,10 +83,12 @@ def main():
 
         # Game logic
         ball.update(dt)
+        racket.update(dt)
         # Render & Display
         black = pygame.Color (0,0,0)
         screen.fill(black)
         ball.draw(screen)
+        racket.draw(screen)
         pygame.display.flip()
         dt = clock.tick(12)
 pygame.quit()
