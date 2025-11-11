@@ -11,9 +11,9 @@ For my project, I would like to make a juggling (Game&Watch type) game. That wil
 It's relevant to media and digital arts because it's a game experience, focusing on multi-tasking as part of its core game loop.
 
 ## Features
-- 1- Ball translating in random direction
+- 1 - Ball translating in random direction
 	- Using an update and draw method in a class, and import random
-- 2- Making a moving platform/racket
+- 2 - Making a moving platform/racket
 	- Using keyboard inputs or mouse clicks to move the platform to bounce back the ball
 - N - Making a death plane
 	- So when ball goes inside, game over (using end of screen height)
