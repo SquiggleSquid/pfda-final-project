@@ -3,13 +3,19 @@ import pygame
 
 class Ball():
 
-    def __init__(self, pos, size, color, radius):
+    def __init__(self, pos, size=15, color=(0,255,0), radius=7.5):
         self.pos = pos
         self.size = size
-        self.color = random.choice(color)
+        self.color = self.get_random_color()
         self.radius = radius
 
         self.surface = self.update_surface()
+
+    def get_random_color(self):
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        return (r, g, b)
 
     def update_surface(self):
         x, y, = self.pos
@@ -26,10 +32,10 @@ class Ball():
 
 class Racket():
 
-    def __init__(self, pos, size, color):
+    def __init__(self, pos, size=20):
         self.pos = pos
         self.size = size
-        self.color = random.choice(color)
+        self.color = pygame.Color("#431736")
 
         self.surface = self.update_surface()
 
@@ -82,8 +88,8 @@ def main():
             running=False
 
         # Game logic
-        ball.update(dt)
-        racket.update(dt)
+            #ball.update(dt)
+            #racket.update(dt)
         # Render & Display
         black = pygame.Color (0,0,0)
         screen.fill(black)
