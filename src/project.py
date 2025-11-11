@@ -19,4 +19,8 @@ class Ball():
         surf = pygame.Surface((self.radius * 1.2, self.radius * 2), pygame.SRCALPHA)
         pygame.draw.circle(surf, self.color, (x, y), self.size*0.8)
         return surf
+    
+    def draw(self, surface, circle_surface):
+        self.surface = surface
+        surface.blit(self.surface, self.pos)
 
