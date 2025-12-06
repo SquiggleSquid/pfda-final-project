@@ -31,31 +31,6 @@ class Ball():
         self.surface = surface
         surface.blit(self.surface, self.pos)
 
-class Racket():
-
-    def __init__(self, pos, size=20):
-        self.pos = pos
-        self.size = size
-        self.color = pygame.Color("#431736")
-
-        self.surface = self.update_surface()
-
-    def update_surface(self):
-        x = self.pos[0]
-        y = self.pos[1]
-        x += 1
-        y += 1 
-        if x > 0:
-            x = 0
-            y = 0
-
-        surf = pygame.Surface((self.size*20, self.size*5))
-        surf.fill(self.color)
-        return surf
-    
-    def draw(self, surface):
-        self.surface = surface
-        surface.blit(self.surface, self.pos)
 
 def create_paddle(x, y, width, height):
     return pygame.Rect(x, y, width, height)
@@ -73,7 +48,6 @@ def main():
     screen = pygame.display.set_mode((screenWidth, screenHeight))
 
     ball = Ball(resolution)
-    #racket = Racket(resolution)
 
     running = True
     while running:
@@ -82,17 +56,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-            # Mouse/keyboard controls for platform (racket)
-            #elif event.type == pygame.KEYDOWN:
-                #if event.key == pygame.K_1:
-                    #new_color = palette1
-                    #Particle((0,0), 15, 1000, palette1, 7.5)
-                    #Racket()
-            #if event.type == pygame.MOUSEMOTION:
-                #mouse_position = pygame.mouse.get_pos()
-                #paddle_rect(mouse_position[0],screenHeight-50, 100, 25)
             mouse_position = pygame.mouse.get_pos()
-
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -100,14 +64,12 @@ def main():
 
         # Game logic
             #ball.update(dt)
-            #racket.update(dt)
         current_paddle = create_paddle(mouse_position[0]-50,screenHeight-50, 100, 25)
 
         # Render & Display
         black = pygame.Color (0,0,0)
         screen.fill(black)
         ball.draw(screen)
-        #racket.draw(screen)
         pygame.draw.rect(screen, (pygame.Color("#431736")), current_paddle)
 
         pygame.display.flip()
