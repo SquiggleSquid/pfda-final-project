@@ -6,7 +6,8 @@ class Ball():
     def __init__(self, pos, size=15, color=(0,255,0), radius=7.5):
         self.pos = pos
         self.size = size
-        self.color = self.get_random_color()
+        #self.color = self.get_random_color()
+        self.color = pygame.Color(255)
         self.radius = radius
 
         self.surface = self.update_surface()
@@ -56,17 +57,23 @@ class Racket():
         self.surface = surface
         surface.blit(self.surface, self.pos)
 
+def create_paddle(x, y, width, height):
+    return pygame.Rect(x, y, width, height)
 
 def main():
     pygame.init()
     pygame.display.set_caption("Digital Rain")
     clock = pygame.time.Clock()
     dt = 0
-    resolution = (800, 600)
-    screen = pygame.display.set_mode(resolution)
+
+    screenWidth=400
+    screenHeight=600
+    resolution = (screenWidth, screenHeight)
+
+    screen = pygame.display.set_mode((screenWidth, screenHeight))
 
     ball = Ball(resolution)
-    racket = Racket(resolution)
+    #racket = Racket(resolution)
 
     running = True
     while running:
@@ -81,6 +88,10 @@ def main():
                     #new_color = palette1
                     #Particle((0,0), 15, 1000, palette1, 7.5)
                     #Racket()
+            #if event.type == pygame.MOUSEMOTION:
+                #mouse_position = pygame.mouse.get_pos()
+                #paddle_rect(mouse_position[0],screenHeight-50, 100, 25)
+            mouse_position = pygame.mouse.get_pos()
 
 
         keys = pygame.key.get_pressed()
@@ -90,11 +101,15 @@ def main():
         # Game logic
             #ball.update(dt)
             #racket.update(dt)
+        current_paddle = create_paddle(mouse_position[0]-50,screenHeight-50, 100, 25)
+
         # Render & Display
         black = pygame.Color (0,0,0)
         screen.fill(black)
         ball.draw(screen)
-        racket.draw(screen)
+        #racket.draw(screen)
+        pygame.draw.rect(screen, (pygame.Color("#431736")), current_paddle)
+
         pygame.display.flip()
         dt = clock.tick(12)
 pygame.quit()
