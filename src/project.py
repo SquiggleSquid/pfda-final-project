@@ -3,12 +3,15 @@ import pygame
 
 class Ball():
 
-    def __init__(self, pos, size=15, color=(0,255,0), radius=7.5):
+    def __init__(self, pos, size, color, radius, screen_width, screen_height):
         self.pos = pos
-        self.size = size
+        self.size = size #15
         #self.color = self.get_random_color()
-        self.color = pygame.Color(255)
-        self.radius = radius
+        self.color = pygame.Color((0,255,0))
+        self.radius = radius #7.5
+
+        self.screen_width = screen_width
+        self.screen_height = screen_height
 
         self.surface = self.update_surface()
 
