@@ -9,16 +9,16 @@ GitHub Repo: <https://github.com/SquiggleSquid/pfda-final-project>
 ## Description
 This is a simple build to a juggling (Game&Watch style) game. Where the goal is to repeatedly bounce back the slow or fast ball for the longest amount of time and prevent the balls from hitting the death plane (bottom of the screen).
 
-**Random Elements:**
+</**Random Elements:**>
 To introduce an element of randomness, not only does the ball translate in random directions when spawning, but the intial speed is also random, along with the color of the ball.
 
-**Mouse Control Paddle:**
+</**Mouse Control Paddle:**>
 And to make the paddle more receptive to input, you can use the quick mouse option, as the paddle naturally follows your cursor. Allowing for smoother gameplay and better game feel, with quick and natural response time to hit the ball back.
 
-**When You "Game Over!":**
+</**When You "Game Over!":**>
 And for simplicity, the game simply ends and stops running after hitting the death plane. Showing you a "Game Over!" text in the printed terminal below.
 
-**How to Exit:**
+</**How to Exit:**>
 If you want to exit the game before a "Game Over!" you can either hit the 'x' button in the tab window, Press "q" for quit, or "ESC" for escape.
 (All of which stop the game from running prematurely)
 
