@@ -6,9 +6,8 @@ class Ball():
     def __init__(self, x, y, radius, color, screen_width, screen_height):
         self.x = x
         self.y = y
-        self.radius = radius #7.5
-        #self.color = self.get_random_color()
-        self.color = color #pygame.Color((0,255,0))
+        self.radius = radius
+        self.color = color
         color = self.get_random_color()
 
         self.screen_width = screen_width
@@ -47,13 +46,13 @@ class Ball():
         return False
 
     def check_paddle_collision(self, paddle_rect):
-            if self.rect.colliderect(paddle_rect):
-                if self.speed_y > 0:
-                    self.rect.bottom = paddle_rect.top
-                else:
-                    self.rect.top = paddle_rect.bottom
+        if self.rect.colliderect(paddle_rect):
+            if self.speed_y > 0:
+                self.rect.bottom = paddle_rect.top
+            else:
+                self.rect.top = paddle_rect.bottom
 
-                self.speed_y *= -1
+            self.speed_y *= -1
 
 
 def create_paddle(x, y, width, height):
@@ -62,7 +61,7 @@ def create_paddle(x, y, width, height):
 
 def main():
     pygame.init()
-    pygame.display.set_caption("8-Ball Juggle")
+    pygame.display.set_caption("Ball Juggle")
     clock = pygame.time.Clock()
     dt = 0
 
