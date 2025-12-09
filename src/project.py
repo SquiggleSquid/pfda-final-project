@@ -37,16 +37,13 @@ class Ball():
         pygame.draw.circle(screen, self.color, self.rect.center, self.radius)
 
     def check_wall_collision(self):
-        # Bounce off horizontal walls
-        if self.rect.x - self.radius < 0 or self.rect.x + self.radius > self.screen_width:
-            self.speed_x *= -1
-        # Bounce off vertical walls
-        if self.rect.y - self.radius < 0:
+        if self.rect.top <= 0:
             self.speed_y *= -1
+        if self.rect.left <= 0 or self.rect.right >= self.screen_width:
+            self.speed_x *= -1
 
     def check_death_plane(self):
-        # Death plane
-        if self.rect.y + self.radius > self.screen_height:
+        if self.rect.bottom > self.screen_height:
             self.speed_x = 0
             self.speed_y = 0
             return True
