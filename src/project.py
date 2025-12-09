@@ -9,12 +9,13 @@ class Ball():
         self.radius = radius #7.5
         #self.color = self.get_random_color()
         self.color = color #pygame.Color((0,255,0))
+        color = self.get_random_color()
 
         self.screen_width = screen_width
         self.screen_height = screen_height
 
-        self.speed_x = random.choice([-1, 1]) * random.randint(3, 8)
-        self.speed_y = random.choice([-1, 1]) * random.randint(3, 8)
+        self.speed_x = random.choice([-1, 1]) * random.randint(5, 8)
+        self.speed_y = random.choice([-1, 1]) * random.randint(5, 8)
 
         self.rect = pygame.Rect(screen_width//2-self.radius, 
             screen_height//2-self.radius, self.radius*2, self.radius*2)
@@ -46,9 +47,8 @@ class Ball():
         if self.y + self.radius > self.screen_height:
             self.speed_x = 0
             self.speed_y = 0
-            print("Game Over!")
-            #return True
-        #return False
+            return True
+        return False
 
     def check_paddle_collision(self, paddle):
         if self.rect.colliderect(paddle):
@@ -71,11 +71,12 @@ def main():
 
     screenWidth=400
     screenHeight=600
-    resolution = (screenWidth, screenHeight)
-
     screen = pygame.display.set_mode((screenWidth, screenHeight))
 
-    ball = Ball(resolution, 15, pygame.Color((0,255,0)), 7.5, screenWidth, screenHeight)
+    ball_color = Ball.get_random_color(screen)
+    ball = Ball(screenWidth//2, screenHeight//2, 7.5, 
+                ball_color, screenWidth, screenHeight)
+
 
     running = True
     while running:
@@ -103,7 +104,7 @@ def main():
         current_paddle = pygame.draw.rect(screen, (pygame.Color("#431736")), paddle)
         ball.check_wall_collision()
 
-        if ball.check_death_plane():
+        if ball.check_death_plane() == True:
             print("Game Over!")
             running = False
 
