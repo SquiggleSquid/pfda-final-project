@@ -26,25 +26,27 @@ class Ball():
         b = random.randint(0, 255)
         return (r, g, b)
 
+    #def update(self, dt):
+        #self.age += dt
+
     def move(self):
-        self.x += self.speed_x
-        self.y += self.speed_y
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
     
     def draw(self, screen):
-        pygame.draw.circle(screen, self.color, (int(self.x), int(self.y)), self.radius)
+        pygame.draw.circle(screen, self.color, self.rect.center, self.radius)
 
     def check_wall_collision(self):
         # Bounce off horizontal walls
-        if self.x - self.radius < 0 or self.x + self.radius > self.screen_width:
+        if self.rect.x - self.radius < 0 or self.rect.x + self.radius > self.screen_width:
             self.speed_x *= -1
         # Bounce off vertical walls
-        if self.y - self.radius < 0:
+        if self.rect.y - self.radius < 0:
             self.speed_y *= -1
 
-    # In your main game loop, after moving the ball
     def check_death_plane(self):
         # Death plane
-        if self.y + self.radius > self.screen_height:
+        if self.rect.y + self.radius > self.screen_height:
             self.speed_x = 0
             self.speed_y = 0
             return True
@@ -58,6 +60,35 @@ class Ball():
                 self.rect.left = paddle.right
         
             self.speed_y *= -1
+"""
+class BallTrail():
+    def __init__(self, pos, size, life):
+        self.pos = pos
+        self.size = size
+        self.life = life
+        self.ball_trail = [ ] 
+
+    def update(self, dt):
+        ball = Ball(self.pos, size=self.size, life=self.life)
+        self.ball_trail.insert(0, ball)
+        self._update_ball(dt)
+        self._update_pos()
+
+    def _update_ball(self, dt):
+        for idx, ball in enumerate(self.ball_trail):
+            ball.update(dt)
+            if ball.dead:
+                del self.ball_trail[idx]
+
+    def _update_pos(self):
+        x, y, = self.pos
+        y += self.size
+        self.pos (x,y)
+
+    def draw(self, screen):
+        for ball in self.ball_trail:
+            ball.draw(screen)
+"""
 
 
 def create_paddle(x, y, width, height):
