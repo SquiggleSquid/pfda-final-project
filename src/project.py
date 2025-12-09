@@ -3,17 +3,18 @@ import pygame
 
 class Ball():
 
-    def __init__(self, pos, size, color, radius, screen_width, screen_height):
+    def __init__(self, pos, size, radius, color, screen_width, screen_height):
         self.pos = pos
         self.size = size #15
-        #self.color = self.get_random_color()
-        self.color = pygame.Color((0,255,0))
         self.radius = radius #7.5
+        #self.color = self.get_random_color()
+        self.color = color #pygame.Color((0,255,0))
 
         self.screen_width = screen_width
         self.screen_height = screen_height
 
-        self.surface = self.update_surface()
+        self.speed_x = random.choice([-1, 1]) * random.randint(3, 8)
+        self.speed_y = random.choice([-1, 1]) * random.randint(3, 8)
 
     def get_random_color(self):
         r = random.randint(0, 255)
@@ -50,7 +51,7 @@ def main():
 
     screen = pygame.display.set_mode((screenWidth, screenHeight))
 
-    ball = Ball(resolution)
+    ball = Ball(resolution, 15, pygame.Color((0,255,0)), 7.5, screenWidth, screenHeight)
 
     running = True
     while running:
