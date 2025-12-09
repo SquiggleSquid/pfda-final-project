@@ -16,6 +16,9 @@ class Ball():
         self.speed_x = random.choice([-1, 1]) * random.randint(3, 8)
         self.speed_y = random.choice([-1, 1]) * random.randint(3, 8)
 
+        self.rect = pygame.Rect(screen_width//2-self.radius, 
+            screen_height//2-self.radius, self.radius*2, self.radius*2)
+
     def get_random_color(self):
         r = random.randint(0, 255)
         g = random.randint(0, 255)
@@ -47,6 +50,14 @@ class Ball():
             return True
         return False
 
+    def check_paddle_collision(self, paddle):
+        if self.rect.colliderect(paddle):
+            if self.speed_y > 0:
+                self.rect.right = paddle.left
+            elif self.speed_y < 0:
+                self.rect.left = paddle.right
+        
+            self.speed_y *= -1
 
 
 def create_paddle(x, y, width, height):
