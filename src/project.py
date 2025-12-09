@@ -25,6 +25,9 @@ class Ball():
     def move(self):
         self.x += self.speed_x
         self.y += self.speed_y
+    
+    def draw(self, screen):
+        pygame.draw.circle(screen, self.color, (int(self.x), int(self.y)), self.radius)
 
     def check_wall_collision(self):
         # Bounce off horizontal walls
@@ -44,15 +47,6 @@ class Ball():
             return True
         return False
 
-
-    #def update_surface(self):
-        #surf = pygame.Surface((self.radius * 1.2, self.radius * 2), pygame.SRCALPHA)
-        #pygame.draw.circle(surf, self.color, (x, y), self.size*0.8)
-        #return surf
-    
-    def draw(self, surface):
-        self.surface = surface
-        #surface.blit(self.surface, self.pos)
 
 
 def create_paddle(x, y, width, height):
