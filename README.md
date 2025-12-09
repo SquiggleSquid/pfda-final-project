@@ -11,7 +11,7 @@ This is a simple build to a juggling (Game&Watch style) game. Where the goal is 
 
 **Random Elements:**
 
-To introduce an element of randomness, not only does the ball translate in random directions when spawning, but the intial speed is also random, along with the color of the ball.
+To introduce an element of randomness, not only does the ball translate in random directions when spawning, but the initial speed is also random, along with the color of the ball.
 
 **Mouse Control Paddle:**
 
