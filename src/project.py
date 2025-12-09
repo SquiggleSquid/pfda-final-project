@@ -34,10 +34,16 @@ class Ball():
         if self.y - self.radius < 0:
             self.speed_y *= -1
 
+    # In your main game loop, after moving the ball
+    def check_death_plane(self):
         # Death plane
         if self.y + self.radius > self.screen_height:
             self.speed_x = 0
             self.speed_y = 0
+            print("Game Over!")
+            return True
+        return False
+
 
     #def update_surface(self):
         #surf = pygame.Surface((self.radius * 1.2, self.radius * 2), pygame.SRCALPHA)
