@@ -81,6 +81,11 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_q: 
+                running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE: 
+                running = False
+
             mouse_position = pygame.mouse.get_pos()
             paddle = create_paddle(mouse_position[0]-50,screenHeight-50, 100, 25)
 
