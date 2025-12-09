@@ -46,14 +46,14 @@ class Ball():
             return True
         return False
 
-    def check_paddle_collision(self, paddle):
-        if self.rect.colliderect(paddle):
-            if self.speed_y > 0:
-                self.rect.right = paddle.left
-            elif self.speed_y < 0:
-                self.rect.left = paddle.right
-        
-            self.speed_y *= -1
+    def check_paddle_collision(self, paddle_rect):
+            if self.rect.colliderect(paddle_rect):
+                if self.speed_y > 0:
+                    self.rect.bottom = paddle_rect.top
+                else:
+                    self.rect.top = paddle_rect.bottom
+
+                self.speed_y *= -1
 
 
 def create_paddle(x, y, width, height):
