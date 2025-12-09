@@ -61,7 +61,7 @@ def create_paddle(x, y, width, height):
 
 def main():
     pygame.init()
-    pygame.display.set_caption("Ball Juggle")
+    pygame.display.set_caption("8-Bit Ball Juggle")
     clock = pygame.time.Clock()
     dt = 0
 
