@@ -47,8 +47,8 @@ class Ball():
             self.speed_x = 0
             self.speed_y = 0
             print("Game Over!")
-            return True
-        return False
+            #return True
+        #return False
 
     def check_paddle_collision(self, paddle):
         if self.rect.colliderect(paddle):
@@ -85,20 +85,29 @@ def main():
                 running = False
 
             mouse_position = pygame.mouse.get_pos()
+            paddle = create_paddle(mouse_position[0]-50,screenHeight-50, 100, 25)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             running=False
 
         # Game logic
-            #ball.update(dt)
         current_paddle = create_paddle(mouse_position[0]-50,screenHeight-50, 100, 25)
 
         # Render & Display
         black = pygame.Color (0,0,0)
         screen.fill(black)
-        ball.draw(screen)
-        pygame.draw.rect(screen, (pygame.Color("#431736")), current_paddle)
+
+        ball.move()
+        ball.draw(screen) 
+        current_paddle = pygame.draw.rect(screen, (pygame.Color("#431736")), paddle)
+        ball.check_wall_collision()
+
+        if ball.check_death_plane():
+            print("Game Over!")
+            running = False
+
+        ball.check_paddle_collision(current_paddle)
 
         pygame.display.flip()
         dt = clock.tick(12)
