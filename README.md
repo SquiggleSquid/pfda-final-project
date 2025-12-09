@@ -7,7 +7,7 @@ Demo Video: <URL>
 GitHub Repo: <https://github.com/SquiggleSquid/pfda-final-project>
 
 ## Description
-This is a simple build to a juggling (Game&Watch style) game. Where the goal is to repeatedly bounce back the slow or fast ball for the longest amount of time and prevent the balls from hitting the death plane (bottom of the screen).
+This is a simple build to a juggling (Game&Watch style) game. Where the goal is to repeatedly bounce back the slow or fast ball for the longest amount of time possible, and to prevent the ball from hitting the death plane (bottom of the screen).
 
 **Random Elements:**
 
