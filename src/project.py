@@ -26,9 +26,6 @@ class Ball():
         b = random.randint(0, 255)
         return (r, g, b)
 
-    #def update(self, dt):
-        #self.age += dt
-
     def move(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
@@ -57,39 +54,11 @@ class Ball():
                 self.rect.left = paddle.right
         
             self.speed_y *= -1
-"""
-class BallTrail():
-    def __init__(self, pos, size, life):
-        self.pos = pos
-        self.size = size
-        self.life = life
-        self.ball_trail = [ ] 
-
-    def update(self, dt):
-        ball = Ball(self.pos, size=self.size, life=self.life)
-        self.ball_trail.insert(0, ball)
-        self._update_ball(dt)
-        self._update_pos()
-
-    def _update_ball(self, dt):
-        for idx, ball in enumerate(self.ball_trail):
-            ball.update(dt)
-            if ball.dead:
-                del self.ball_trail[idx]
-
-    def _update_pos(self):
-        x, y, = self.pos
-        y += self.size
-        self.pos (x,y)
-
-    def draw(self, screen):
-        for ball in self.ball_trail:
-            ball.draw(screen)
-"""
 
 
 def create_paddle(x, y, width, height):
     return pygame.Rect(x, y, width, height)
+
 
 def main():
     pygame.init()
@@ -139,7 +108,7 @@ def main():
         ball.check_paddle_collision(current_paddle)
 
         pygame.display.flip()
-        dt = clock.tick(12)
+        dt = clock.tick(36)
 pygame.quit()
 
 
