@@ -3,9 +3,9 @@ import pygame
 
 class Ball():
 
-    def __init__(self, pos, size, radius, color, screen_width, screen_height):
-        self.pos = pos
-        self.size = size #15
+    def __init__(self, x, y, radius, color, screen_width, screen_height):
+        self.x = x
+        self.y = y
         self.radius = radius #7.5
         #self.color = self.get_random_color()
         self.color = color #pygame.Color((0,255,0))
@@ -22,18 +22,31 @@ class Ball():
         b = random.randint(0, 255)
         return (r, g, b)
 
-    def update_surface(self):
-        x, y, = self.pos
-        y += self.size
-        self.pos = (x,y)
+    def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
 
-        surf = pygame.Surface((self.radius * 1.2, self.radius * 2), pygame.SRCALPHA)
-        pygame.draw.circle(surf, self.color, (x, y), self.size*0.8)
-        return surf
+    def check_wall_collision(self):
+        # Bounce off horizontal walls
+        if self.x - self.radius < 0 or self.x + self.radius > self.screen_width:
+            self.speed_x *= -1
+        # Bounce off vertical walls
+        if self.y - self.radius < 0:
+            self.speed_y *= -1
+
+        # Death plane
+        if self.y + self.radius > self.screen_height:
+            self.speed_x = 0
+            self.speed_y = 0
+
+    #def update_surface(self):
+        #surf = pygame.Surface((self.radius * 1.2, self.radius * 2), pygame.SRCALPHA)
+        #pygame.draw.circle(surf, self.color, (x, y), self.size*0.8)
+        #return surf
     
     def draw(self, surface):
         self.surface = surface
-        surface.blit(self.surface, self.pos)
+        #surface.blit(self.surface, self.pos)
 
 
 def create_paddle(x, y, width, height):
